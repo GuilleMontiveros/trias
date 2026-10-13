@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="robots" content="noindex">
+<title>TRIAS | Imagen Digital & Fidelización para Negocios</title>
+<meta name="description" content="Ayudamos a negocios locales a construir una imagen digital profesional para atraer más clientes y fidelizarlos.">
+<meta name="theme-color" content="#f5f2eb">
+
+<!-- Ícono de la pestaña del navegador -->
+<link rel="icon" type="image/jpeg" href="logo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* PASO 1: Variables Globales de Diseño */
+  :root {
+    --bg: #f5f2eb;          /* Fondo crema principal */
+    --surface: #ece8df;     /* Superficie suave para tarjetas */
+    --card: #ffffff;        /* Blanco puro para contrastes */
+    --text: #0f0f0f;        /* Negro principal */
+    --accent-word: #1b5e43; /* Verde bosque elegante para acentos en portada */
+    --lime-highlight: #b4d455; /* Verde lima vibrante para el menú desplegable */
+    --muted: #575551;       /* Gris cálido para descripciones */
+    --line: #d8d3c8;        /* Líneas divisorias claras */
+    --dark-bg: #070707;     /* Fondo negro para secciones oscuras */
+    --dark-card: #111111;   /* Fondo de tarjetas en modo oscuro */
+    --dark-input: #080808;  /* Fondo de campos del formulario */
+    --dark-line: #222222;   /* Bordes sutiles en modo oscuro */
+    --radius: 20px;
+    --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; padding: 0; margin: 0; }
+
+  /* PASO 2: Barra de Navegación con Menú Desplegable Interactivo */
+  header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background-color: var(--bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .nav-container {
+    max-width: 1280px; margin: 0 auto; padding: 0.85rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative;
+  }
+  .brand {
+    display: flex; align-items: center;
+    width: 76px; height: 64px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .brand-logo {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+    transform: scale(1.45);
+    mix-blend-mode: multiply;
+    filter: contrast(1.15);
+    transition: transform 0.3s ease;
+  }
+  .brand:hover .brand-logo {
+    transform: scale(1.55);
+  }
+
+  .nav-links { 
+    display: flex; align-items: center; gap: 2.5rem; 
+    font-size: 0.95rem; font-weight: 600; color: var(--text); 
+  }
+  .nav-link-item {
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .nav-link-item:hover { opacity: 0.6; }
+
+  /* Contenedor del Menú Desplegable de Soluciones (Como en tu 2da imagen) */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+  .dropdown-trigger {
+    display: flex; align-items: center; gap: 0.35rem;
+    cursor: pointer;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background-color: #0d0d0d;
+    border: 1px solid #262626;
+    border-radius: 14px;
+    width: 250px;
+    padding: 0.45rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 200;
+  }
+  /* Se abre al pasar el mouse o cuando tiene la clase 'activo' */
+  .dropdown:hover .dropdown-menu,
+  .dropdown.activo .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .dropdown-item {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 9px;
+    transition: background-color 0.18s ease, color 0.18s ease;
+    cursor: pointer;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+  /* Efecto de resaltado igual a tu 2da imagen pero más pulido */
+  .dropdown-item:hover {
+    background-color: var(--lime-highlight);
+    color: #0a0a0a;
+  }
+
+  /* Botón principal de 1 sola palabra: "Conectar" */
+  .btn-pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.78rem 1.9rem; border-radius: 999px;
+    font-weight: 700; font-size: 0.92rem;
+    background: var(--text); color: #ffffff;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    cursor: pointer; border: none;
+  }
+  .btn-pill:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  /* PASO 3: Sección Hero Principal */
+  .hero {
+    min-height: 90vh;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8.5rem 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-content { text-align: left; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 4.8vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin: 0 0 1.6rem;
+    line-height: 1.06;
+    color: var(--text);
+  }
+  .hero h1 .palabra-destacada { color: var(--accent-word); }
+  .hero p {
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    color: var(--muted);
+    margin: 0 0 2.5rem;
+    font-weight: 400;
+    max-width: 550px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: 0.95rem 2.2rem; border-radius: 999px;
+    font-weight: 600; font-size: 0.95rem;
+    background: var(--text); color: #ffffff;
+    transition: opacity 0.2s, transform 0.2s;
+    cursor: pointer; border: 1px solid var(--text);
+  }
+  .btn:hover { opacity: 0.85; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--text); border: 1px solid #c9c4b9;
+  }
+  .btn-outline:hover { border-color: var(--text); background: rgba(0,0,0,0.03); }
+
+  /* Tarjeta de Foto Interactiva */
+  .hero-visual {
+    perspective: 1000px;
+    display: flex; justify-content: center;
+  }
+  .interactive-card {
+    width: 100%; max-width: 470px; height: 520px;
+    border-radius: 36px; overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.16);
+    cursor: grab; position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    user-select: none; background: #dcd7cc;
+  }
+  .interactive-card:active { cursor: grabbing; }
+  .interactive-card img {
+    width: 112%; height: 112%; object-fit: cover;
+    position: absolute; top: -6%; left: -6%;
+    pointer-events: none; transition: transform 0.15s ease-out;
+  }
+  .badge-interactivo {
+    position: absolute; bottom: 20px; right: 20px;
+    background: rgba(15, 15, 15, 0.75);
+    backdrop-filter: blur(8px);
+    color: #fff; padding: 0.45rem 1rem;
+    border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+    pointer-events: none;
+  }
+
+  /* PASO 4: Franja Oscura de Clientes (Como en tu 3ra imagen) */
+  .confianza-seccion {
+    background-color: var(--dark-bg);
+    color: #ffffff;
+    padding: 3.5rem 0 0;
+    text-align: center;
+  }
+  .confianza-titulo {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #999999;
+    margin: 0 0 2.2rem;
+  }
+  .confianza-banda {
+    border-top: 1px solid var(--dark-line);
+    border-bottom: 1px solid var(--dark-line);
+    padding: 2.8rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+  }
+  .cliente-logo-item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  .cliente-logo-item:hover {
+    opacity: 1; transform: translateY(-2px);
+  }
+  .cliente-logo-nombre {
+    font-size: 1.55rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff;
+  }
+  .cliente-logo-sub {
+    font-size: 0.7rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: #888888;
+  }
+
+  /* Secciones Generales */
+  .seccion { padding: 6rem 2.5rem; max-width: 1280px; margin: 0 auto; }
+  .seccion-header-left { max-width: 680px; margin-bottom: 3.5rem; }
+  .etiqueta-seccion {
+    font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--accent-word);
+    display: block; margin-bottom: 0.6rem;
+  }
+  .seccion-titulo {
+    font-size: clamp(2rem, 3.8vw, 2.9rem); font-weight: 800;
+    margin: 0 0 0.8rem; letter-spacing: -0.03em; line-height: 1.15;
+  }
+  .seccion-sub { color: var(--muted); font-size: 1.08rem; margin: 0; }
+
+  /* Grid de Soluciones en Portada */
+  .grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2.3rem 1.9rem;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .card:hover { border-color: var(--text); transform: translateY(-4px); }
+  .card-num {
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent-word);
+    margin-bottom: 1.1rem; display: block;
+  }
+  .card h3 { font-size: 1.3rem; font-weight: 700; margin: 0 0 0.8rem; letter-spacing: -0.01em; }
+  .card p { color: var(--muted); font-size: 0.94rem; margin: 0 0 1.4rem; }
+  .card-link-ver {
+    font-size: 0.84rem; font-weight: 700; color: var(--text);
+  }
+
+  /* Sección Filosofía (Antes Nuestro Enfoque) */
+  .filosofia-seccion {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 6rem 2.5rem;
+  }
+  .filosofia-contenedor { max-width: 1280px; margin: 0 auto; }
+  .enfoque-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .pilar-box {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .pilar-box h3 { font-size: 1.35rem; font-weight: 800; margin: 0 0 1rem; letter-spacing: -0.02em; }
+  .pilar-box p { color: var(--muted); font-size: 0.96rem; margin: 0 0 1.5rem; }
+  .pilar-detalle {
+    font-size: 0.85rem; font-weight: 700; color: var(--accent-word);
+    border-top: 1px solid var(--line); padding-top: 1rem;
+  }
+
+  /* Sección Comercios Transformados (Sin el rótulo "Casos Reales") */
+  .casos-separador {
+    margin-top: 3rem;
+    padding-top: 6rem;
+    border-top: 1px solid var(--line);
+  }
+  .caso-destacado-card {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 3rem;
+    background: var(--card);
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 3rem;
+    align-items: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .caso-destacado-card:hover {
+    border-color: var(--text); transform: translateY(-3px);
+  }
+  .proyecto-tag {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent-word); margin-bottom: 0.6rem; display: block;
+  }
+  .caso-destacado-card h3 {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin: 0 0 1rem; font-weight: 800; letter-spacing: -0.02em;
+  }
+  .caso-destacado-card p {
+    color: var(--muted); font-size: 1.02rem; margin: 0 0 1.8rem; max-width: 600px;
+  }
+  .caso-metricas {
+    background: var(--surface);
+    border-radius: 18px; padding: 2rem;
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .metrica-item strong { display: block; font-size: 1.05rem; font-weight: 800; color: var(--text); }
+  .metrica-item span { font-size: 0.88rem; color: var(--muted); }
+
+  /* ==========================================================================
+     PASO 5: NUEVA VISTA DINÁMICA DE SOLUCIONES (Inspirada y mejorada sobre tu 2da imagen)
+     ========================================================================== */
+  #vista-solucion {
+    display: none; /* Oculta hasta que el usuario selecciona una solución */
+    padding-top: 5.5rem;
+    animation: aparecerSuave 0.35s ease;
+  }
+  @keyframes aparecerSuave {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .solucion-hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 2.5rem 5.5rem;
+  }
+  .btn-volver {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--muted);
+    cursor: pointer; margin-bottom: 2rem;
+    background: none; border: none; padding: 0;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .btn-volver:hover {
+    color: var(--text); transform: translateX(-4px);
+  }
+  .solucion-badge {
+    display: inline-block;
+    padding: 0.4rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+  .solucion-hero h1 {
+    font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em; /* Espaciado limpio para que NO se peguen las palabras */
+    line-height: 1.05;
+    margin: 0 0 1.5rem;
+    color: var(--text);
+  }
+  .solucion-hero p {
+    font-size: clamp(1.08rem, 1.5vw, 1.25rem);
+    color: var(--muted);
+    max-width: 640px;
+    margin: 0 0 2.5rem;
+  }
+
+  /* Bloque oscuro de Planes Interactivos (Seleccioná tu propuesta) */
+  .infraestructura-seccion {
+    background-color: #050505;
+    /* Patrón sutil de líneas diagonales en el fondo oscuro como tu 2da imagen */
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.015),
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+    color: #ffffff;
+    padding: 6rem 2.5rem;
+    border-top: 1px solid var(--dark-line);
+  }
+  .infraestructura-contenedor {
+    max-width: 1280px; margin: 0 auto;
+  }
+  .infraestructura-titulo {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: -0.02em; /* Corrige el error de "Seleccionátuinfracstructura" pegado */
+    margin: 0 0 4rem;
+  }
+  .planes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .plan-card {
+    background-color: #0e0e0e;
+    border: 1px solid #222222;
+    border-radius: 24px;
+    padding: 2.2rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+  }
+  .plan-card:hover {
+    transform: translateY(-4px);
+  }
+  /* Tarjeta de plan activa con brillo y borde del color de la solución */
+  .plan-card.activo {
+    border-color: var(--plan-color, #4ade80);
+    box-shadow: 0 0 35px -5px var(--plan-glow, rgba(74, 222, 128, 0.28));
+  }
+  .plan-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  .plan-numero {
+    font-size: 1.55rem; font-weight: 800; margin: 0 0 0.3rem; color: #ffffff;
+  }
+  .plan-subtitulo {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--plan-color, #4ade80); display: block;
+  }
+  .plan-toggle-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #1a1a1a; border: 1px solid #2e2e2e;
+    color: #ffffff; display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; transition: transform 0.3s ease, background 0.3s;
+    flex-shrink: 0;
+  }
+  .plan-card.activo .plan-toggle-btn {
+    transform: rotate(180deg);
+    background: var(--plan-color, #4ade80);
+    color: #050505;
+    border-color: transparent;
+  }
+  .plan-resumen {
+    color: #9e9e9e; font-size: 0.9rem; margin: 0; line-height: 1.5;
+  }
+  /* Detalles desplegables dentro del plan */
+  .plan-detalles {
+    display: none;
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #222222;
+  }
+  .plan-card.activo .plan-detalles {
+    display: block;
+  }
+  .plan-item-lista {
+    display: grid;
+    grid-template-columns: 115px 1fr;
+    gap: 0.8rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    align-items: baseline;
+  }
+  .plan-item-lista:last-child { margin-bottom: 0; }
+  .plan-item-etiqueta {
+    font-weight: 700; color: #ffffff;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .plan-item-etiqueta span {
+    color: var(--plan-color, #4ade80);
+  }
+  .plan-item-valor {
+    color: #b0b0b0;
+  }
+
+  /* PASO 6: Sección Oscura de Contacto y Footer */
+  .dark-wrapper {
+    background-color: var(--dark-bg);
+    color: #ffffff;
+    padding: 6rem 2.5rem 3rem;
+  }
+  .contacto-grid {
+    max-width: 1280px; margin: 0 auto 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .contacto-info .etiqueta-oscura {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.14em; color: #4ade80; display: block; margin-bottom: 1rem;
+  }
+  .contacto-info h2 {
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
+    margin: 0 0 1.5rem;
+  }
+  .contacto-info p {
+    color: #9e9e9e; font-size: 1.05rem; max-width: 440px; margin: 0 0 2.5rem;
+  }
+  .contacto-directo {
+    display: inline-flex; align-items: center; gap: 1rem;
+    color: #ffffff; font-weight: 500; font-size: 0.95rem;
+    transition: opacity 0.2s;
+  }
+  .contacto-directo:hover { opacity: 0.8; }
+  .icono-circulo {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid var(--dark-line);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--dark-card); font-size: 1.1rem;
+  }
+
+  /* Formulario Oscuro */
+  .form-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-line);
+    border-radius: 28px; padding: 2.8rem;
+  }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem;
+  }
+  .form-group {
+    display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem;
+  }
+  .form-row .form-group { margin-bottom: 0; }
+  .form-group label { font-size: 0.8rem; font-weight: 600; color: #d4d4d4; }
+  .form-group input, .form-group textarea {
+    background: var(--dark-input);
+    border: 1px solid var(--dark-line);
+    border-radius: 12px; padding: 0.95rem 1rem;
+    color: #ffffff; font-family: var(--font); font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: #4ade80; }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .btn-submit-claro {
+    width: 100%; padding: 1.05rem; border-radius: 14px;
+    background: var(--bg); color: var(--text);
+    font-weight: 700; font-size: 0.95rem;
+    border: none; cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s; margin-top: 0.5rem;
+  }
+  .btn-submit-claro:hover { opacity: 0.92; transform: translateY(-2px); }
+
+  /* Footer Inferior */
+  .footer-oscuro {
+    max-width: 1280px; margin: 0 auto;
+    border-top: 1px solid var(--dark-line);
+    padding-top: 3.5rem;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem;
+  }
+  .footer-col h4 { font-size: 0.9rem; font-weight: 700; margin: 0 0 1.2rem; color: #ffffff; }
+  .footer-col ul { display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col a { color: #8c8c8c; font-size: 0.88rem; transition: color 0.2s; cursor: pointer; }
+  .footer-col a:hover { color: #ffffff; }
+  .footer-copy {
+    max-width: 1280px; margin: 3.5rem auto 0;
+    padding-top: 1.5rem; border-top: 1px solid #171717;
+    display: flex; justify-content: space-between; align-items: center;
+    color: #666666; font-size: 0.8rem;
+  }
+  .legal-links { display: flex; gap: 1.5rem; }
+  .legal-links a { color: #666666; transition: color 0.2s; }
+  .legal-links a:hover { color: #ffffff; }
+
+  /* Botón hamburguesa - oculto en escritorio */
+  .menu-mobile-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.7rem;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    line-height: 1;
+    z-index: 110;
+  }
+
+  /* Botón Hablemos dentro del menú mobile - oculto en escritorio */
+  .btn-mobile-menu {
+    display: none;
+  }
+
+  @media(max-width: 960px) {
+    .nav-container {
+      padding: 0.7rem 1.2rem;
+    }
+    .hero, .contacto-grid, .caso-destacado-card, .planes-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero { padding-top: 7rem; }
+    .form-row, .footer-oscuro { grid-template-columns: 1fr; }
+    .interactive-card { height: 400px; }
+    .footer-copy { flex-direction: column; gap: 1rem; text-align: center; }
+
+    /* Mostramos el botón de las tres rayitas */
+    .menu-mobile-btn {
+      display: block;
+    }
+
+    /* Ocultamos el botón Hablemos de escritorio */
+    .boton-escritorio {
+      display: none;
+    }
+
+    /* Menú vertical oculto por defecto */
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #0d0d0d;
+      padding: 1.8rem 1.5rem 2.2rem;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+      text-align: center;
+      gap: 0.4rem;
+      border-bottom: 1px solid #222;
+      z-index: 99;
+    }
+
+    /* Cuando tiene la clase .activo se muestra */
+    .nav-links.activo {
+      display: flex;
+    }
+
+    .nav-links .nav-link-item {
+      color: #ffffff;
+      font-size: 1.05rem;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    .nav-links .nav-link-item:hover {
+      background: rgba(255,255,255,0.08);
+      opacity: 1;
+    }
+
+    /* Dropdown de Soluciones en mobile */
+    .dropdown {
+      width: 100%;
+    }
+    .dropdown-trigger {
+      color: #ffffff;
+      font-size: 1.05rem;
+      padding: 0.85rem 1rem;
+      justify-content: center;
+      border-radius: 10px;
+    }
+    .dropdown-menu {
+      position: static;
+      transform: none;
+      width: 100%;
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      margin-top: 0.4rem;
+      box-shadow: none;
+      opacity: 1;
+      visibility: visible;
+      display: none;
+    }
+    .dropdown.activo .dropdown-menu {
+      display: block;
+    }
+    .dropdown-item {
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    /* Botón Hablemos dentro del menú mobile */
+    .btn-mobile-menu {
+      display: inline-flex;
+      margin-top: 1rem;
+      width: 100%;
+      justify-content: center;
+      background: #ffffff;
+      color: #0f0f0f;
+    }
+
+    /* Título del hero un poco más chico */
+    .hero h1 {
+      font-size: clamp(2.3rem, 8vw, 3.2rem);
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN: Inicio | Proyectos | Filosofía | Soluciones (Desplegable) + Botón "Hablemos" -->
+  <header>
+    <div class="nav-container">
+      <a onclick="volverAlInicio()" class="brand" title="Volver al Inicio">
+        <img src="logo.jpg" onerror="this.onerror=null; this.src='logo.png';" alt="Isotipo TRIAS" class="brand-logo" id="logoPrincipal">
+      </a>
+
+      <nav class="nav-links" id="menuNavegacion">
+        <a onclick="volverAlInicio(); cerrarMenuMobile()" class="nav-link-item">Inicio</a>
+        <a onclick="irASeccion('clientes'); cerrarMenuMobile()" class="nav-link-item">Proyectos</a>
+        <a onclick="irASeccion('filosofia'); cerrarMenuMobile()" class="nav-link-item">Filosofía</a>
+        
+        <!-- Menú Desplegable Interactivo de Soluciones -->
+        <div class="dropdown" id="menuSoluciones">
+          <span class="dropdown-trigger" onclick="toggleMenuMobile(event)">
+            Soluciones <span style="font-size: 0.75rem;">▾</span>
+          </span>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" onclick="abrirSolucion('web'); cerrarMenuMobile()">Desarrollo Web & Sistemas</a>
+            <a class="dropdown-item" onclick="abrirSolucion('identidad'); cerrarMenuMobile()">Imagen & Diseño Digital</a>
+            <a class="dropdown-item" onclick="abrirSolucion('atraccion'); cerrarMenuMobile()">Atracción & Fidelización</a>
+            <a class="dropdown-item" onclick="abrirSolucion('turnos'); cerrarMenuMobile()">Turnos & Catálogos WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Botón Hablemos dentro del menú mobile -->
+        <a href="#contacto" class="btn-pill btn-mobile-menu" onclick="cerrarMenuMobile()">Hablemos</a>
+      </nav>
+
+      <a href="#contacto" class="btn-pill boton-escritorio">Hablemos</a>
+
+      <!-- Botón hamburguesa para celulares -->
+      <button class="menu-mobile-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       VISTA 1: PÁGINA PRINCIPAL (INICIO)
+       ======================================================================== -->
+  <div id="vista-inicio">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>
+          Conectamos tu<br>
+          comercio local<br>
+          con clientes que<br>
+          vuelven y te <span class="palabra-destacada">eligen.</span>
+        </h1>
+        <p>Construimos una imagen digital profesional y cercana para tu negocio, ayudándote a atraer nuevas visitas cada día y fidelizarlas con herramientas simples.</p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn">Quiero crecer</a>
+          <a onclick="irASeccion('soluciones-home')" class="btn btn-outline">Ver soluciones</a>
+        </div>
+      </div>
+
+      <!-- Foto Interactiva con movimiento 3D -->
+      <div class="hero-visual">
+        <div class="interactive-card" id="fotoInteractiva">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=85" 
+               alt="Equipo trabajando junto a comercios locales" 
+               id="imagenInterna">
+          <span class="badge-interactivo">✦ Mueve o arrastra la foto</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRANJA OSCURA DE CLIENTES -->
+    <section class="confianza-seccion" id="clientes">
+      <p class="confianza-titulo">COMERCIOS CON LOS QUE ESTAMOS CRECIENDO</p>
+      <div class="confianza-banda">
+        <a onclick="irASeccion('comercios-transformados')" class="cliente-logo-item" title="Conocer el caso de Estética Ariadna">
+          <span class="cliente-logo-nombre">ESTÉTICA ARIADNA</span>
+          <span class="cliente-logo-sub">Peluquería • Barbería • Uñas</span>
+        </a>
+      </div>
+    </section>
+
+    <main>
+      <!-- SECCIÓN SOLUCIONES (Al hacer clic en cualquiera, abre la vista interactiva de esa solución) -->
+      <section class="seccion" id="soluciones-home">
+        <div class="seccion-header-left">
+          <span class="etiqueta-seccion">Soluciones</span>
+          <h2 class="seccion-titulo">Todo lo que tu negocio necesita para destacar en tu ciudad.</h2>
+          <p class="seccion-sub">Seleccioná una solución para explorar cómo trabajamos y qué planes se adaptan a tu comercio.</p>
+        </div>
+
+        <div class="grid-servicios">
+          <div class="card" onclick="abrirSolucion('web')">
+            <div>
+              <span class="card-num">01 / WEB & SISTEMAS</span>
+              <h3>Desarrollo Web & Sistemas</h3>
+              <p>Páginas web rápidas y sistemas a medida que hacen que tu negocio luzca profesional y atienda mejor.</p>
+            </div>
+            <span class="card-link-ver">Ver planes y detalles →</span>
+          </div>
+
+          <div class="card" onclick="abrirSolucion('identidad')">
+            <div>
+              <span class="card-num">02 / IDENTIDAD VISUAL</span>
+              <h3>Imagen & Diseño Digital</h3>
+              <p>Renovamos la estética de tu comercio para transmitir confianza inmediata y diferenciarte en tu zona.</p>
+            </div>
+            <span class="card-link-ver">Ver planes y detalles →</span>
+          </div>
+
+          <div class="card" onclick="abrirSolucion('atraccion')">
+            <div>
+              <span class="card-num">03 / CRECIMIENTO LOCAL</span>
+              <h3>Atracción & Fidelización</h3>
+              <p>Estrategias digitales para atraer vecinos de tu ciudad y lograr que vuelvan a elegirte cada mes.</p>
+            </div>
+            <span class="card-link-ver">Ver planes y detalles →</span>
+          </div>
+
+          <div class="card" onclick="abrirSolucion('turnos')">
+            <div>
+              <span class="card-num">04 / AUTOMATIZACIÓN</span>
+              <h3>Turnos & Catálogos WhatsApp</h3>
+              <p>Agendas interactivas y pedidos online que llegan listos a tu WhatsApp, sin pagar comisiones mensuales.</p>
+            </div>
+            <span class="card-link-ver">Ver planes y detalles →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN FILOSOFÍA (Antes "Nuestro Enfoque") -->
+      <section class="filosofia-seccion" id="filosofia">
+        <div class="filosofia-contenedor">
+          <div class="seccion-header-left">
+            <span class="etiqueta-seccion">Filosofía</span>
+            <h2 class="seccion-titulo">Cercanía real para hacer crecer el comercio local.</h2>
+            <p class="seccion-sub">Nos sentamos a entender tu negocio para brindarte tecnología a medida, práctica y pensada para tu rentabilidad.</p>
+          </div>
+
+          <div class="enfoque-grid">
+            <div class="pilar-box">
+              <div>
+                <h3>Imagen que transmite confianza</h3>
+                <p>Hoy tus clientes te buscan en internet antes de entrar a tu local. Cuidamos cada detalle visual para que tu marca refleje la verdadera calidad de lo que ofreces.</p>
+              </div>
+              <div class="pilar-detalle">Diseño pensado para destacar →</div>
+            </div>
+
+            <div class="pilar-box">
+              <div>
+                <h3>Trato directo y sin intermediarios</h3>
+                <p>Hablás directamente con quien diseña y desarrolla tu plataforma. Sin burocracia ni tecnicismos complicados: soluciones claras que funcionan desde el primer día.</p>
+              </div>
+              <div class="pilar-detalle">Acompañamiento paso a paso →</div>
+            </div>
+
+            <div class="pilar-box">
+              <div>
+                <h3>Desarrollo a medida a un valor accesible</h3>
+                <p>Al trabajar con una estructura ágil y sin costos corporativos inflados, logramos ofrecer desarrollos superiores a una inversión mucho más accesible para el comercio local.</p>
+              </div>
+              <div class="pilar-detalle">Rentabilidad real sin abonos ocultos →</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN COMERCIOS TRANSFORMADOS (Sin la etiqueta "Casos Reales", dejando tu título y subtítulo exactos) -->
+      <section class="seccion casos-separador" id="comercios-transformados">
+        <div class="seccion-header-left">
+          <h2 class="seccion-titulo">Un primer paso que ya está dando resultados.</h2>
+          <p class="seccion-sub">Así estamos acompañando a comercios locales a ordenar su atención y mejorar su imagen digital.</p>
+        </div>
+
+        <div class="caso-destacado-card">
+          <div>
+            <span class="proyecto-tag">Peluquería, Barbería & Uñas</span>
+            <h3>Estética Ariadna</h3>
+            <p>Renovamos por completo su imagen digital mediante una plataforma web interactiva. Ahora sus clientes pueden explorar el catálogo de servicios, filtrar por su profesional de confianza y reservar su turno enviando el resumen directo al WhatsApp del salón.</p>
+            <span style="font-size: 0.92rem; font-weight: 700; color: var(--accent-word);">Sistema en producción • Rivadavia, San Juan →</span>
+          </div>
+
+          <div class="caso-metricas">
+            <div class="metrica-item">
+              <strong>Atención Automatizada</strong>
+              <span>Reservas ordenadas por profesional directo al WhatsApp sin intermediarios.</span>
+            </div>
+            <div class="metrica-item">
+              <strong>Imagen Profesional</strong>
+              <span>Catálogo claro de servicios que fideliza a los clientes habituales del salón.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       VISTA 2: PÁGINA INTERACTIVA DE CADA SOLUCIÓN (Como en tu 2da imagen)
+       ======================================================================== -->
+  <div id="vista-solucion">
+    <section class="solucion-hero">
+      <button class="btn-volver" onclick="volverAlInicio()">
+        ← VOLVER AL INICIO
+      </button>
+      <br>
+      <span class="solucion-badge" id="solBadge">SOLUCIÓN</span>
+      <h1 id="solTitulo">Título de la Solución.</h1>
+      <p id="solDescripcion">Descripción detallada de la solución para negocios locales.</p>
+      <a href="#contacto" class="btn" id="solBotonAccion">Quiero esta solución</a>
+    </section>
+
+    <section class="infraestructura-seccion">
+      <div class="infraestructura-contenedor">
+        <h2 class="infraestructura-titulo">Seleccioná la etapa para tu comercio</h2>
+        <!-- Aquí JavaScript inyecta dinámicamente los 3 planes interactivos -->
+        <div class="planes-grid" id="contenedorPlanes"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================================================
+       SECCIÓN FINAL OSCURA: Contacto + Footer (Compartida en todas las vistas)
+       ======================================================================== -->
+  <div class="dark-wrapper" id="contacto">
+    <section class="contacto-grid">
+      <div class="contacto-info">
+        <span class="etiqueta-oscura">HABLEMOS DE TU NEGOCIO</span>
+        <h2>Hagamos crecer tu comercio hoy.</h2>
+        <p>Dejanos tu consulta y nos pondremos en contacto para evaluar cómo mejorar la imagen digital de tu negocio y atraer nuevos clientes.</p>
+        
+        <a href="mailto:contacto@trias.sanjuan.com" class="contacto-directo">
+          <span class="icono-circulo">✉️</span>
+          <span>contacto@trias.sanjuan.com</span>
+        </a>
+      </div>
+
+      <div class="form-card">
+        <form id="formularioContacto">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Tu Nombre</label>
+              <input type="text" id="nombre" placeholder="Ej: Martín Gómez" required>
+            </div>
+            <div class="form-group">
+              <label for="negocio">Nombre de tu Negocio / Rubro</label>
+              <input type="text" id="negocio" placeholder="Ej: Peluquería / Tienda" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactoInput">Email o Teléfono de contacto</label>
+            <input type="text" id="contactoInput" placeholder="Ej: tuemail@correo.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">¿Cómo podemos ayudar a tu negocio?</label>
+            <textarea id="mensaje" placeholder="Contanos qué solución te interesó para tu comercio..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-claro">Empecemos</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer-oscuro">
+      <div class="footer-col">
+        <h4 style="font-size: 1.2rem; letter-spacing: -0.02em;">TRIAS.</h4>
+        <p style="color: #8c8c8c; font-size: 0.88rem; max-width: 300px; margin: 0;">
+          Desarrollo web, sistemas a medida e imagen digital para negocios locales que buscan atraer y fidelizar clientes.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explorar</h4>
+        <ul>
+          <li><a onclick="volverAlInicio()">Inicio</a></li>
+          <li><a onclick="irASeccion('clientes')">Proyectos</a></li>
+          <li><a onclick="irASeccion('filosofia')">Filosofía</a></li>
+          <li><a onclick="abrirSolucion('web')">Soluciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conectemos</h4>
+        <ul>
+          <li><a href="mailto:contacto@trias.sanjuan.com">contacto@trias.sanjuan.com</a></li>
+          <li><a href="#contacto">Hablemos</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <div class="footer-copy">
+      <span>© 2026 TRIAS. Todos los derechos reservados.</span>
+      <div class="legal-links">
+        <a href="#aviso-legal">Aviso Legal</a>
+        <a href="#privacidad">Política de Privacidad</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PASO 7: LÓGICA JAVASCRIPT (Catálogo de Soluciones, Navegación y Efectos)
+       ======================================================================== -->
+  <script>
+    // 1. BASE DE DATOS DE TUS 4 SOLUCIONES (Personalizadas para negocios locales en TRIAS)
+    const datosSoluciones = {
+      web: {
+        etiqueta: "DESARROLLO WEB & SISTEMAS",
+        colorFondoBadge: "#d1fae5",
+        colorTextoBadge: "#065f46",
+        colorAcento: "#34d399",
+        brillo: "rgba(52, 211, 153, 0.25)",
+        titulo: "Presencia Digital de Alto Impacto.",
+        descripcion: "En TRIAS no usamos plantillas lentas. Diseñamos y programamos sitios web veloces y sistemas a medida que hacen que tu comercio local inspire confianza inmediata y convierta visitas en clientes reales.",
+        textoBoton: "Crear mi Web",
+        planes: [
+          {
+            nombre: "Plan 1",
+            subtitulo: "PRESENCIA ESENCIAL",
+            resumen: "Ideal para comercios locales que buscan dar su primer paso firme en internet con una página moderna y veloz.",
+            items: [
+              { clave: "Diseño:", valor: "Landing page 100% a medida adaptada a celulares." },
+              { clave: "Contacto:", valor: "Botones directos a tu WhatsApp y ubicación en mapa." },
+              { clave: "Velocidad:", valor: "Código limpio de carga instantánea." },
+              { clave: "Propiedad:", valor: "Sin abonos mensuales obligatorios." }
+            ]
+          },
+          {
+            nombre: "Plan 2",
+            subtitulo: "COMERCIO INTERACTIVO",
+            resumen: "Pensado para negocios que quieren mostrar su catálogo completo de servicios o productos y recibir consultas ordenadas.",
+            items: [
+              { clave: "Arquitectura:", valor: "Sitio completo con secciones interactivas y filtros." },
+              { clave: "Catálogo:", valor: "Muestra de productos o servicios autogestionable." },
+              { clave: "SEO Local:", valor: "Optimización para aparecer en búsquedas de tu ciudad." },
+              { clave: "Soporte:", valor: "Acompañamiento directo en la puesta en marcha." }
+            ]
+          },
+          {
+            nombre: "Plan 3",
+            subtitulo: "SISTEMA A MEDIDA",
+            resumen: "Desarrollo de software personalizado para automatizar la operación diaria de tu negocio y escalar sin límites.",
+            items: [
+              { clave: "Ingeniería:", valor: "Panel de control y lógica adaptada a tu flujo de trabajo." },
+              { clave: "Integración:", valor: "Conexión directa con WhatsApp, agendas y clientes." },
+              { clave: "Seguridad:", valor: "Infraestructura robusta y rápida." },
+              { clave: "Evolución:", valor: "Escalable a medida que tu comercio crece." }
+            ]
+          }
+        ]
+      },
+      identidad: {
+        etiqueta: "IMAGEN & DISEÑO DIGITAL",
+        colorFondoBadge: "#fef3c7",
+        colorTextoBadge: "#92400e",
+        colorAcento: "#fbbf24",
+        brillo: "rgba(251, 191, 36, 0.25)",
+        titulo: "Una Marca que Enamora a Primera Vista.",
+        descripcion: "Ayudamos a tu comercio a proyectar el verdadero valor de lo que ofrece. Construimos una estética visual coherente, limpia y atractiva para que destaques frente a cualquier competidor de tu zona.",
+        textoBoton: "Renovar mi Imagen",
+        planes: [
+          {
+            nombre: "Plan 1",
+            subtitulo: "RENOVACIÓN VISUAL",
+            resumen: "Para negocios que ya están funcionando pero sienten que su imagen en internet quedó desactualizada.",
+            items: [
+              { clave: "Identidad:", valor: "Definición de paleta de colores y tipografías modernas." },
+              { clave: "Perfiles:", valor: "Optimización estética de tus canales digitales." },
+              { clave: "Claridad:", valor: "Orden visual para que el cliente entienda qué ofreces." }
+            ]
+          },
+          {
+            nombre: "Plan 2",
+            subtitulo: "AUTORIDAD DE MARCA",
+            resumen: "Un sistema visual completo para comercios que buscan posicionarse como referentes indiscutidos en su rubro.",
+            items: [
+              { clave: "Dirección:", valor: "Línea gráfica integral para tu web y redes." },
+              { clave: "Piezas Clave:", valor: "Plantillas editables y catálogo visual de servicios." },
+              { clave: "Coherencia:", valor: "Manual práctico de estilo para mantener siempre el nivel." },
+              { clave: "Impacto:", valor: "Estética minimalista enfocada en generar confianza." }
+            ]
+          },
+          {
+            nombre: "Plan 3",
+            subtitulo: "EXPERIENCIA 360°",
+            resumen: "Unimos el diseño físico de tu local con tu vidriera digital para crear una experiencia inolvidable.",
+            items: [
+              { clave: "Ecosistema:", valor: "Identidad completa + Sitio web interactivo." },
+              { clave: "Punto Físico:", valor: "Diseño de códigos QR y señalética digital para el local." },
+              { clave: "Fidelización:", valor: "Piezas pensadas para incentivar la recompra." }
+            ]
+          }
+        ]
+      },
+      atraccion: {
+        etiqueta: "ATRACCIÓN & FIDELIZACIÓN",
+        colorFondoBadge: "#fce7f3",
+        colorTextoBadge: "#9d174d",
+        colorAcento: "#f472b6",
+        brillo: "rgba(244, 114, 182, 0.28)",
+        titulo: "Más Clientes en tu Local Cada Semana.",
+        descripcion: "No se trata de acumular seguidores vacíos, sino de atraer vecinos de tu ciudad con intención real de compra y darles herramientas cómodas para que vuelvan a elegirte siempre.",
+        textoBoton: "Diseñar Estrategia",
+        planes: [
+          {
+            nombre: "Plan 1",
+            subtitulo: "VISIBILIDAD LOCAL",
+            resumen: "Ideal para que las personas que buscan tu servicio en tu ciudad te encuentren rápido y te contacten.",
+            items: [
+              { clave: "Búsqueda:", valor: "Optimización de presencia en mapas y buscadores." },
+              { clave: "Embudo:", valor: "Página de aterrizaje enfocada 100% en consultas." },
+              { clave: "Medición:", valor: "Seguimiento real de cuántos clientes escriben." }
+            ]
+          },
+          {
+            nombre: "Plan 2",
+            subtitulo: "ATRACCIÓN Y RECOMPRA",
+            resumen: "Nuestra propuesta más elegida para comercios que quieren flujo constante de nuevos clientes y fidelizar a los actuales.",
+            items: [
+              { clave: "Campañas:", valor: "Anuncios segmentados específicamente en tu radio local." },
+              { clave: "Conversión:", valor: "Conexión directa entre el anuncio y tu sistema de reservas." },
+              { clave: "Fidelidad:", valor: "Estrategia para recordar turnos o promociones a clientes." },
+              { clave: " Claridad:", valor: "Reportes simples orientados a tus ventas." }
+            ]
+          },
+          {
+            nombre: "Plan 3",
+            subtitulo: "EXPANSIÓN COMERCIAL",
+            resumen: "Para negocios consolidados que buscan liderar su sector en toda la provincia con tecnología y difusión.",
+            items: [
+              { clave: "Estrategia:", valor: "Planificación integral de adquisición y retención." },
+              { clave: "Automatización:", valor: "Sistemas de seguimiento para clientes frecuentes." },
+              { clave: "Optimización:", valor: "Mejora continua de tu plataforma según resultados." }
+            ]
+          }
+        ]
+      },
+      turnos: {
+        etiqueta: "TURNOS & CATÁLOGOS WHATSAPP",
+        colorFondoBadge: "#e0e7ff",
+        colorTextoBadge: "#1e40af",
+        colorAcento: "#818cf8",
+        brillo: "rgba(129, 140, 248, 0.28)",
+        titulo: "Atención Ordenada y Sin Comisiones.",
+        descripcion: "Inspirado en casos reales como Estética Ariadna: tus clientes eligen servicio, profesional u horario desde una web impecable y el pedido te llega listo a tu WhatsApp.",
+        textoBoton: "Automatizar mi Atención",
+        planes: [
+          {
+            nombre: "Plan 1",
+            subtitulo: "CATÁLOGO DIRECTO",
+            resumen: "Perfecto para tiendas o comercios que quieren recibir pedidos claros por WhatsApp sin responder cien veces los precios.",
+            items: [
+              { clave: "Vidriera:", valor: "Catálogo interactivo con fotos, precios y categorías." },
+              { clave: "Carrito:", valor: "Armado de pedido rápido desde el celular." },
+              { clave: "Cero Costo:", valor: "Sin comisiones por venta ni intermediarios." }
+            ]
+          },
+          {
+            nombre: "Plan 2",
+            subtitulo: "AGENDA DE TURNOS PRO",
+            resumen: "Diseñado para peluquerías, centros de estética, consultorios y servicios que trabajan por reserva.",
+            items: [
+              { clave: "Equipo:", valor: "Selección de servicios y filtrado por profesional." },
+              { clave: "WhatsApp:", valor: "Resumen automático de cita enviado al instante." },
+              { clave: "Imagen:", valor: "Diseño personalizado con la estética de tu salón." },
+              { clave: "Simplicidad:", valor: "Tus clientes reservan en 3 toques sin bajar apps." }
+            ]
+          },
+          {
+            nombre: "Plan 3",
+            subtitulo: "GESTIÓN INTEGRAL",
+            resumen: "Para locales con múltiples sucursales o alto volumen diario que requieren reglas horarias específicas.",
+            items: [
+              { clave: "Múltiples:", valor: "Rutas de WhatsApp separadas por sucursal o especialista." },
+              { clave: "Catálogo + Cita:", valor: "Combinación de reserva de turnos y venta de productos." },
+              { clave: "A Medida:", valor: "Adaptado 100% a la forma de trabajar de tu comercio." }
+            ]
+          }
+        ]
+      }
+    };
+
+    // 2. FUNCIÓN PARA ABRIR LA VISTA INTERACTIVA DE UNA SOLUCIÓN
+    function abrirSolucion(idSolucion) {
+      const info = datosSoluciones[idSolucion];
+      if (!info) return;
+
+      // Actualiza los textos y colores de la cabecera de la solución
+      const badge = document.getElementById('solBadge');
+      badge.textContent = info.etiqueta;
+      badge.style.backgroundColor = info.colorFondoBadge;
+      badge.style.color = info.colorTextoBadge;
+
+      document.getElementById('solTitulo').textContent = info.titulo;
+      document.getElementById('solDescripcion').textContent = info.descripcion;
+      document.getElementById('solBotonAccion').textContent = info.textoBoton;
+
+      // Genera las 3 tarjetas de planes (Con el Plan 2 abierto y destacado por defecto como en tu 2da imagen)
+      const contenedor = document.getElementById('contenedorPlanes');
+      contenedor.innerHTML = '';
+
+      info.planes.forEach((plan, index) => {
+        const esActivo = index === 1 ? 'activo' : ''; // El Plan 2 inicia desplegado
+        const itemsHTML = plan.items.map(item => `
+          <div class="plan-item-lista">
+            <div class="plan-item-etiqueta"><span>✓</span> ${item.clave}</div>
+            <div class="plan-item-valor">${item.valor}</div>
+          </div>
+        `).join('');
+
+        const tarjetaPlan = document.createElement('div');
+        tarjetaPlan.className = `plan-card ${esActivo}`;
+        tarjetaPlan.style.setProperty('--plan-color', info.colorAcento);
+        tarjetaPlan.style.setProperty('--plan-glow', info.brillo);
+
+        tarjetaPlan.innerHTML = `
+          <div class="plan-header">
+            <div>
+              <h3 class="plan-numero">${plan.nombre}</h3>
+              <span class="plan-subtitulo">${plan.subtitulo}</span>
+            </div>
+            <div class="plan-toggle-btn">⌄</div>
+          </div>
+          <p class="plan-resumen">${plan.resumen}</p>
+          <div class="plan-detalles">
+            ${itemsHTML}
+          </div>
+        `;
+
+        // Al hacer clic en un plan, se activa ese plan y se pliegan los demás
+        tarjetaPlan.addEventListener('click', () => {
+          document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('activo'));
+          tarjetaPlan.classList.add('activo');
+        });
+
+        contenedor.appendChild(tarjetaPlan);
+      });
+
+      // Oculta la portada y muestra la vista de la solución
+      document.getElementById('vista-inicio').style.display = 'none';
+      document.getElementById('vista-solucion').style.display = 'block';
+      document.getElementById('menuSoluciones').classList.remove('activo');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 3. FUNCIÓN PARA VOLVER A LA PORTADA PRINCIPAL
+    function volverAlInicio() {
+      document.getElementById('vista-solucion').style.display = 'none';
+      document.getElementById('vista-inicio').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 4. FUNCIÓN PARA IR A UNA SECCIÓN DE LA PORTADA DESDE CUALQUIER VISTA
+    function irASeccion(idSeccion) {
+      document.getElementById('vista-solucion').style.display = 'none';
+      document.getElementById('vista-inicio').style.display = 'block';
+      const elemento = document.getElementById(idSeccion);
+      if (elemento) {
+        setTimeout(() => {
+          elemento.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+    }
+
+    // Menú hamburguesa (celular)
+    function toggleMenu() {
+      const menu = document.getElementById('menuNavegacion');
+      menu.classList.toggle('activo');
+      // Cerrar el dropdown de Soluciones al abrir/cerrar el menú
+      document.getElementById('menuSoluciones').classList.remove('activo');
+    }
+
+    function cerrarMenuMobile() {
+      const menu = document.getElementById('menuNavegacion');
+      if (menu) menu.classList.remove('activo');
+      document.getElementById('menuSoluciones').classList.remove('activo');
+    }
+
+    // Dropdown de Soluciones (escritorio y mobile)
+    function toggleMenuMobile(e) {
+      e.stopPropagation();
+      document.getElementById('menuSoluciones').classList.toggle('activo');
+    }
+
+    window.addEventListener('click', () => {
+      document.getElementById('menuSoluciones').classList.remove('activo');
+    });
+
+    // 5. LIMPIEZA AUTOMÁTICA DEL CUADRADO BLANCO DEL LOGO
+    window.addEventListener('load', () => {
+      const imgLogo = document.getElementById('logoPrincipal');
+      if (!imgLogo || !imgLogo.complete || imgLogo.naturalWidth === 0) return;
+
+      try {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = imgLogo.naturalWidth;
+        canvas.height = imgLogo.naturalHeight;
+        ctx.drawImage(imgLogo, 0, 0);
+
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imgData.data;
+        let minX = canvas.width, minY = canvas.height, maxX = 0, maxY = 0;
+
+        for (let y = 0; y < canvas.height; y++) {
+          for (let x = 0; x < canvas.width; x++) {
+            const i = (y * canvas.width + x) * 4;
+            if (data[i] > 235 && data[i + 1] > 235 && data[i + 2] > 235) {
+              data[i + 3] = 0;
+            } else {
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+              if (y < minY) minY = y;
+              if (y > maxY) maxY = y;
+            }
+          }
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+
+        if (maxX > minX && maxY > minY) {
+          const recorteAncho = maxX - minX + 16;
+          const recorteAlto = maxY - minY + 16;
+          const canvasRecortado = document.createElement('canvas');
+          canvasRecortado.width = recorteAncho;
+          canvasRecortado.height = recorteAlto;
+          const ctxRecortado = canvasRecortado.getContext('2d');
+
+          ctxRecortado.drawImage(
+            canvas,
+            Math.max(0, minX - 8), Math.max(0, minY - 8),
+            recorteAncho, recorteAlto,
+            0, 0, recorteAncho, recorteAlto
+          );
+
+          imgLogo.src = canvasRecortado.toDataURL('image/png');
+          imgLogo.style.transform = 'scale(1)';
+        }
+      } catch (err) {
+        console.log('Modo local activo: aplicando transparencia mediante CSS.');
+      }
+    });
+
+    // 6. EFECTO 3D Y ARRASTRE DE LA FOTO INTERACTIVA
+    const tarjeta = document.getElementById('fotoInteractiva');
+    const imagen = document.getElementById('imagenInterna');
+    let arrastrando = false, inicioX = 0, inicioY = 0, despX = 0, despY = 0;
+
+    tarjeta.addEventListener('mousemove', (e) => {
+      const rect = tarjeta.getBoundingClientRect();
+      const rotX = (((e.clientY - rect.top) - rect.height / 2) / (rect.height / 2)) * -10;
+      const rotY = (((e.clientX - rect.left) - rect.width / 2) / (rect.width / 2)) * 10;
+
+      if (arrastrando) {
+        despX = e.clientX - inicioX;
+        despY = e.clientY - inicioY;
+      }
+
+      tarjeta.style.transform = `translate(${despX * 0.3}px, ${despY * 0.3}px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+      imagen.style.transform = `translate(${-rotY * 1.5}px, ${rotX * 1.5}px)`;
+    });
+
+    tarjeta.addEventListener('mousedown', (e) => {
+      arrastrando = true;
+      inicioX = e.clientX - despX;
+      inicioY = e.clientY - despY;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (arrastrando) {
+        arrastrando = false; despX = 0; despY = 0;
+        tarjeta.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg) scale(1)';
+      }
+    });
+
+    tarjeta.addEventListener('mouseleave', () => {
+      arrastrando = false; despX = 0; despY = 0;
+      tarjeta.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg) scale(1)';
+      imagen.style.transform = 'translate(0px, 0px)';
+    });
+
+    // 7. ENVÍO DEL FORMULARIO AL CORREO ELECTRÓNICO
+    document.getElementById('formularioContacto').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const negocio = document.getElementById('negocio').value;
+      const contacto = document.getElementById('contactoInput').value;
+      const mensaje = document.getElementById('mensaje').value;
+
+      const asunto = encodeURIComponent(`Consulta de ${nombre} - ${negocio}`);
+      const cuerpo = encodeURIComponent(`Nombre: ${nombre}\nNegocio: ${negocio}\nContacto: ${contacto}\n\nMensaje:\n${mensaje}`);
+      
+      window.location.href = `mailto:contacto@trias.sanjuan.com?subject=${asunto}&body=${cuerpo}`;
+    });
+  </script>
+
+</body>
+</html>
